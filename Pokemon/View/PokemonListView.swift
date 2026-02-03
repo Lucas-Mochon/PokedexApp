@@ -16,6 +16,11 @@ struct PokemonListView: View {
                 .padding(20)
                 .background(Color.pokemonBackground)
                 
+                TextField("Rechercher un Pokémon...", text: $viewModel.searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 8)
+                
                 if viewModel.pokemonList.isEmpty && !viewModel.isLoading {
                     VStack {
                         Image(systemName: "questionmark.circle")
@@ -29,9 +34,7 @@ struct PokemonListView: View {
                 } else {
                     ScrollView {
                         LazyVGrid(
-                            columns: [
-                                GridItem(.adaptive(minimum: 160), spacing: 12)
-                            ],
+                            columns: [GridItem(.adaptive(minimum: 160), spacing: 12)],
                             spacing: 12
                         ) {
                             ForEach(viewModel.pokemonList) { pokemon in
@@ -96,7 +99,6 @@ struct PokemonListView: View {
             .background(Color.pokemonBackground)
         }
     }
-
     
     private func loadPokemonImage(for pokemon: PokemonListItem) async {
         guard pokemonImages[pokemon.id] == nil else { return }
@@ -115,7 +117,6 @@ struct PokemonListView: View {
             print("Erreur: \(error)")
         }
     }
-
 }
 
 #Preview {

@@ -1,9 +1,6 @@
 extension PokeAPIService {
 
-    func fetchPokemonList(
-        limit: Int = 20,
-        offset: Int = 0
-    ) async throws -> PokemonListResponse {
+    func fetchPokemonList(limit: Int = 20,offset: Int = 0) async throws -> PokemonListResponse {
         try await request(.pokemonList(limit: limit, offset: offset))
     }
 
